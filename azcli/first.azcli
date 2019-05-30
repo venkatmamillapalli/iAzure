@@ -1,4 +1,5 @@
 az group create --name second --location centralus
 az group list --output table
 az network vnet create --name 'network' --resource-group 'second' --address-prefixes '192.168.0.0/16' --location 'centralus' --subnet-name 'public' --subnet-prefixes '192.168.0.0/24'
-az vm create --name 'hello'   --resource-group 'second' --authentication-type all --image
+az network vnet subnet create --address-prefixes '192.168.2.0/24' --name 'public1' --resource-group 'second' --vnet-name 'network'
+az network vnet subnet create --address-prefixes '192.168.1.0/24' --name 'private' --resource-group 'second' --vnet-name 'network'
