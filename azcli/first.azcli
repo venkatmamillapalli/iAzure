@@ -1,5 +1,10 @@
-az group create --name second --location centralus
+az login
+az group create --name vengroup --location centralus
 az group list --output table
-az network vnet create --name 'network' --resource-group 'second' --address-prefixes '192.168.0.0/16' --location 'centralus' --subnet-name 'public' --subnet-prefixes '192.168.0.0/24'
-az network vnet subnet create --address-prefixes '192.168.2.0/24' --name 'public1' --resource-group 'second' --vnet-name 'network'
-az network vnet subnet create --address-prefixes '192.168.1.0/24' --name 'private' --resource-group 'second' --vnet-name 'network'
+az network vnet create --name 'vennetwork' --resource-group 'vengroup' --address-prefixes '192.168.0.0/16' --location 'centralus'
+az network vnet subnet create --address-prefixes '192.168.2.0/24' --name 'public' --resource-group 'vengroup' --vnet-name 'vennetwork'
+az network vnet subnet create --address-prefixes '192.168.1.0/24' --name 'private' --resource-group 'vengroup' --vnet-name 'vennetwork'
+az storage account create --name 'venkat7022' --resource-group 'vengroup' --kind 'StorageV2' --location 'centralus' 
+az network nsg create --name 'vennetsec' --resource-group 'vengroup' --location 'centralus'
+az network nsg show -g vengroup -n vennetsec
+az network nsg update -g 'vengroup' -n 'vennetsec' --add tags.no_80
