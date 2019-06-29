@@ -9,3 +9,8 @@
     *Managed Images
         * VM s with data base
         
+
+
+ * Reating sql  server
+ * sql db server
+ 
